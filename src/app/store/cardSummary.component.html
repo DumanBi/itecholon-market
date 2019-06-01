@@ -1,0 +1,12 @@
+<div class="pull-xs-right">
+  <small> В вашей корзине:
+    <span *ngIf="cart.itemCount > 0">
+      <a routerLink="/card-detail">{{ cart.itemCount }} элемент(а/ов)</a>, на сумму
+      {{ (cart.cartPrice).toLocaleString('ru') }} ₸
+    </span>
+    <span *ngIf="cart.itemCount == 0"> (пусто) </span>
+  </small>
+  <button class="btn btn-sm bg-inverse" [disabled]="cart.itemCount == 0">
+    <i class="fa fa-shopping-cart"></i>
+  </button>
+</div>

@@ -1,0 +1,11 @@
+<h4 class="card-header"> {{product.name}}
+  <span class="badge  badge-pill badge-secondary float-right">
+    {{ (product.price).toLocaleString('ru') }} ₸
+  </span>
+</h4>
+<div class="card-text p-3">
+  {{product.description}}
+  <button class="btn btn-success btn-sm float-right" (click)="addProduct(product)">
+    Добавить в корзину
+  </button>
+</div>

@@ -1,0 +1,43 @@
+<div class="navbar navbar-inverse bg-inverse">
+  <a class="navbar-brand" routerLink="/">Aray City Mall</a>
+  <a href="javascript:;" (click)="logout()">Выйти</a>
+</div>
+<div class="container">
+  <h2 class="text-xs-center">Заказы клиентов</h2>
+  <table class="table table-bordered table-striped p-a-1">
+    <thead>
+      <tr>
+        <th>Кол-во</th>
+        <th>Наименование</th>
+        <th class="text-xs-right">Цена</th>
+        <th class="text-xs-right">Сумма</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngIf="cart.lines.length == 0">
+        <td colspan="5" class="text-xs-center"> Нет заказов </td>
+      </tr>
+      <tr *ngFor="let line of cart.lines">
+        <td>
+          <input type="number" class="form-control-sm" style="width:5em" [value]="line.quantity"
+            (change)="cart.updateQuantity(line.product, $event.target.value)" /> </td>
+        <td>
+          {{line.product.name}}
+        </td>
+        <td class="text-xs-right"> {{ (line.product.price).toLocaleString('ru') }} </td>
+        <td class="text-xs-right"> {{ (line.lineTotal).toLocaleString('ru') }} </td>
+        <td class="text-xs-center">
+          <button class="btn btn-sm btn-danger" (click)="cart.removeLine(line.product.id)">
+            Оформить </button>
+          </td>
+      </tr>
+    </tbody>
+    <tfoot>
+      <tr>
+        <td colspan="4" class="text-xs-right">Total:</td>
+        <td class="text-xs-right">{{ (cart.cartPrice).toLocaleString('ru') }} ₸ </td>
+      </tr>
+    </tfoot>
+  </table>
+</div>
